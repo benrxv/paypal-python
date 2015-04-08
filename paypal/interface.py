@@ -522,3 +522,14 @@ class PayPalInterface(object):
         """
         kwargs.update(self._sanitize_locals(locals()))
         return self._call('BMCreateButton', **kwargs)
+
+    def create_billing_agreement(self, token, **kwargs):
+        """Create a billing agreement using the specified token"""
+        kwargs.update({"TOKEN": token})
+        kwargs.update(self._sanitize_locals(locals()))
+        return self._call('CreateBillingAgreement', **kwargs)
+
+    def do_reference_transaction(self, reference_id, **kwargs):
+        kwargs.update({"REFERENCEID": reference_id})
+        kwargs.update(self._sanitize_locals(locals()))
+        return self._call('DoReferenceTransaction', **kwargs)
